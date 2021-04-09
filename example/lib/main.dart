@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:payu_flutter/payu_flutter.dart';
+import 'package:payu_payment/payu_payment.dart';
 
 void main() {
   runApp(MaterialApp(home: MyApp()));

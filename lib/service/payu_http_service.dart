@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:payu_flutter/models/payu_auth.dart';
-import 'package:payu_flutter/models/payu_order.dart';
+import 'package:payu_payment/models/payu_auth.dart';
+import 'package:payu_payment/models/payu_order.dart';
 
 class PayUHttpService {
   final http.Client client;

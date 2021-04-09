@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:payu_flutter/payu_flutter.dart';
+import 'package:payu_payment/payu_payment.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PayUWebView extends StatefulWidget {

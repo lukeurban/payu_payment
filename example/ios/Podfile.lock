@@ -1,0 +1,28 @@
+PODS:
+  - Flutter (1.0.0)
+  - payu_payment (0.0.1):
+    - Flutter
+  - webview_flutter (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - payu_payment (from `.symlinks/plugins/payu_payment/ios`)
+  - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  payu_payment:
+    :path: ".symlinks/plugins/payu_payment/ios"
+  webview_flutter:
+    :path: ".symlinks/plugins/webview_flutter/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  payu_payment: 4f4bec900f7848d5eeb0cf8379c8ec190311cb97
+  webview_flutter: 9f491a9b5a66f2573946a389b2677987b0ff8c0b
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.10.1

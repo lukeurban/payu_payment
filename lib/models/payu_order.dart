@@ -1,5 +1,5 @@
-import 'package:payu_flutter/models/payu_buyer.dart';
-import 'package:payu_flutter/models/payu_product.dart';
+import 'package:payu_payment/models/payu_buyer.dart';
+import 'package:payu_payment/models/payu_product.dart';
 
 class PayUOrder {
   final int posId;

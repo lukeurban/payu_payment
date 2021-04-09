@@ -1,4 +1,4 @@
-name: payu_flutter
+name: payu_payment
 description: Simple PayU integration using WebView
 version: 0.0.1
 repository: https://github.com/lukeurban/payu_flutter
