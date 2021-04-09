@@ -1,6 +1,5 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:payu_flutter/payu_flutter.dart';
 
 void main() {
   const MethodChannel channel = MethodChannel('payu_flutter');
@@ -18,6 +17,5 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await PayuFlutter.platformVersion, '42');
   });
 }

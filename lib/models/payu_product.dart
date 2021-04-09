@@ -1,14 +1,12 @@
-import 'package:flutter/material.dart';
-
 class PayUProduct {
   final String name;
   final int unitPrice;
   final int quantity;
 
   PayUProduct({
-    @required this.name,
-    @required this.unitPrice,
-    @required this.quantity,
+    required this.name,
+    required this.unitPrice,
+    required this.quantity,
   });
 
   Map<String, dynamic> toJson() => {

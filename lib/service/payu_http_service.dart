@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:payu_flutter/models/payu_auth.dart';
 import 'package:payu_flutter/models/payu_order.dart';
@@ -9,11 +8,15 @@ import 'package:payu_flutter/models/payu_order.dart';
 class PayUHttpService {
   final http.Client client;
   final bool isProduction;
-  PayUHttpService({@required this.client, this.isProduction = false});
+  PayUHttpService({
+    required this.client,
+    this.isProduction = false,
+  });
 
-  Future<PayUAuthResponse> authorize(int clientId, String clientSecret) async {
+  Future<PayUAuthResponse> authorize(int? clientId, String? clientSecret) async {
     String data = 'grant_type=client_credentials&client_id=$clientId&client_secret=$clientSecret';
-    http.Response res = await http.post('$baseUrl/pl/standard/user/oauth/authorize?$data');
+    http.Response res =
+        await http.post(Uri.parse('$baseUrl/pl/standard/user/oauth/authorize?$data'));
     if (res.statusCode != 200) throw Exception('http.post error: statusCode= ${res.statusCode}');
     Map<String, dynamic> json = jsonDecode(res.body);
     return PayUAuthResponse.fromJson(json);
@@ -25,7 +28,7 @@ class PayUHttpService {
       HttpHeaders.authorizationHeader: 'Bearer ${auth.accessToken}',
     };
     http.Response res = await http.post(
-      '$baseUrl/api/v2_1/orders',
+      Uri.parse('$baseUrl/api/v2_1/orders'),
       headers: headers,
       body: jsonEncode(orderRequest.toJson()),
     );

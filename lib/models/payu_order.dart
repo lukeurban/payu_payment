@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:payu_flutter/models/payu_buyer.dart';
 import 'package:payu_flutter/models/payu_product.dart';
 
@@ -9,10 +8,10 @@ class PayUOrder {
   final PayUBuyer buyer;
   final List<PayUProduct> products;
   PayUOrder({
-    @required this.posId,
-    @required this.description,
-    @required this.currencyCode,
-    @required this.buyer,
+    required this.posId,
+    required this.description,
+    required this.currencyCode,
+    required this.buyer,
     this.products = const [],
   });
   Map<String, dynamic> toJson() => {
@@ -34,9 +33,9 @@ class PayUOrderRequest {
   final String extOrderId;
   final PayUOrder order;
   PayUOrderRequest({
-    @required this.order,
-    @required this.notifyUrl,
-    @required this.customerIp,
+    required this.order,
+    required this.notifyUrl,
+    required this.customerIp,
     this.extOrderId = '',
   });
 
@@ -53,9 +52,9 @@ class PayUOrderRequest {
 
 class PayUOrderResponse {
   final PayUOrderResponseStatus status;
-  final String redirectUri;
-  final String orderId;
-  final String extOrderId;
+  late final String redirectUri;
+  late final String orderId;
+  late final String extOrderId;
 
   PayUOrderResponse.fromJson(Map<String, dynamic> json)
       : status = PayUOrderResponseStatus.fromJson(json['status']),
@@ -65,7 +64,7 @@ class PayUOrderResponse {
 }
 
 class PayUOrderResponseStatus {
-  final PayUOrderStatus statusCode;
+  final PayUOrderStatus? statusCode;
   PayUOrderResponseStatus.fromJson(Map<String, dynamic> json)
       : statusCode = payUOrderStatusResponseMap[json['statusCode']];
 }

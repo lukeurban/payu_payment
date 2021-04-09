@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
 import 'package:payu_flutter/models/payu_auth.dart';
 import 'package:payu_flutter/models/payu_order.dart';
 import 'package:payu_flutter/service/payu_http_service.dart';
@@ -12,18 +11,15 @@ export 'package:payu_flutter/payu_webview.dart';
 export 'package:webview_flutter/webview_flutter.dart';
 
 class PayUFlutter {
-  PayUHttpService _payUHttpService;
-  int _clientId;
-  String _clientSecret;
-  // MethodChannel _channel =
-  //     const MethodChannel('payu_flutter');
+  late PayUHttpService _payUHttpService;
+  int clientId;
+  String clientSecret;
+
   PayUFlutter({
-    @required int clientId,
-    @required String clientSecret,
+    required this.clientId,
+    required this.clientSecret,
     bool isProduction = false,
   }) {
-    _clientId = clientId;
-    _clientSecret = clientSecret;
     _payUHttpService = PayUHttpService(
       client: http.Client(),
       isProduction: isProduction,
@@ -31,7 +27,7 @@ class PayUFlutter {
   }
 
   Future<PayUOrderResponse> prepareOrder(PayUOrder order) async {
-    PayUAuthResponse authResponse = await _payUHttpService.authorize(_clientId, _clientSecret);
+    PayUAuthResponse authResponse = await _payUHttpService.authorize(clientId, clientSecret);
     return _payUHttpService.order(
         PayUOrderRequest(
           customerIp: '127.0.0.1',

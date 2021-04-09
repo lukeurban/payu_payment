@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 import 'package:payu_flutter/payu_flutter.dart';
 
 void main() {
@@ -19,7 +18,7 @@ class _MyAppState extends State<MyApp> {
       description: 'ZAKUPY',
       currencyCode: 'PLN',
       buyer: PayUBuyer(
-        email: 'lucius.urbanski@gmail.com',
+        email: 'thatlukeurban@gmail.com',
         firstName: 'null',
         language: 'pl',
         lastName: 'null',
@@ -35,7 +34,7 @@ class _MyAppState extends State<MyApp> {
 
   PayUFlutter payuFlutter = PayUFlutter(
     clientId: 1,
-    clientSecret: 'SECRET',
+    clientSecret: 'SUPER_SECRET',
     isProduction: false,
   );
   @override
@@ -61,7 +60,6 @@ class _MyAppState extends State<MyApp> {
       builder: (BuildContext context) {
         return Center(
           child: Container(
-            // height: MediaQuery.of(context).size.height,
             child: PayUWebView(
               builder: (WebViewController controller, Widget child) {
                 return child;
@@ -85,7 +83,7 @@ class _MyAppState extends State<MyApp> {
           builder: (BuildContext context) {
             return Column(
               children: [
-                FlatButton(
+                TextButton(
                   onPressed: () async {
                     PayUOrderResponse payUOrderResponse = await payuFlutter.prepareOrder(order);
                     openAsBottomModal(payUOrderResponse).then((value) {
@@ -97,7 +95,7 @@ class _MyAppState extends State<MyApp> {
                     "Authorize in bottom modal",
                   ),
                 ),
-                FlatButton(
+                TextButton(
                   onPressed: () async {
                     PayUOrderResponse payUOrderResponse = await payuFlutter.prepareOrder(order);
 
@@ -127,21 +125,5 @@ class _MyAppState extends State<MyApp> {
             );
           },
         ));
-  }
-}
-
-class Wrapper extends StatefulWidget {
-  const Wrapper({Key key}) : super(key: key);
-
-  @override
-  _WrapperState createState() => _WrapperState();
-}
-
-class _WrapperState extends State<Wrapper> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        // child: child,
-        );
   }
 }

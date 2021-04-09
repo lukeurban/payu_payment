@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class PayUBuyer {
   final String email;
   final String phone;
@@ -8,11 +6,11 @@ class PayUBuyer {
   final String language;
 
   PayUBuyer({
-    @required this.email,
-    @required this.phone,
-    @required this.firstName,
-    @required this.lastName,
-    @required this.language,
+    required this.email,
+    required this.phone,
+    required this.firstName,
+    required this.lastName,
+    required this.language,
   });
 
   Map<String, dynamic> toJson() => {

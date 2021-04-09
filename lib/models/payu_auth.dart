@@ -1,8 +1,8 @@
 class PayUAuthResponse {
-  final String accessToken;
-  final String tokenType;
-  final int expiresIn;
-  final String grantType;
+  late final String accessToken;
+  late final String tokenType;
+  late final int expiresIn;
+  late final String grantType;
 
   PayUAuthResponse.fromJson(Map<String, dynamic> json)
       : accessToken = json['access_token'],

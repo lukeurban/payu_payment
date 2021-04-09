@@ -5,15 +5,15 @@ import 'package:payu_flutter/payu_flutter.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PayUWebView extends StatefulWidget {
-  final Function(WebViewController controller, Widget child) builder;
+  final Function(WebViewController? controller, Widget child) builder;
   final PayUOrderResponse orderResponse;
-  final Widget customLoadingWidget;
+  final Widget? customLoadingWidget;
   final String redirectUrl;
   const PayUWebView({
-    Key key,
-    @required this.builder,
-    @required this.redirectUrl,
-    @required this.orderResponse,
+    Key? key,
+    required this.builder,
+    required this.redirectUrl,
+    required this.orderResponse,
     this.customLoadingWidget,
   }) : super(key: key);
 
@@ -22,7 +22,7 @@ class PayUWebView extends StatefulWidget {
 }
 
 class _PayUWebViewState extends State<PayUWebView> {
-  WebViewController controller;
+  WebViewController? controller;
   double opacity = 0;
 
   Widget webViewBody() {
@@ -46,7 +46,7 @@ class _PayUWebViewState extends State<PayUWebView> {
             child: WebView(
               navigationDelegate: (NavigationRequest request) {
                 // TO remmove this strange button overlay BUG in webView or PayU
-                controller.scrollBy(0, 1);
+                controller?.scrollBy(0, 1);
                 if (request.url.contains('error')) {
                   Navigator.of(context).pop(false);
                   return NavigationDecision.prevent;
