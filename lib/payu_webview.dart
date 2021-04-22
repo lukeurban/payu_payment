@@ -5,18 +5,19 @@ import 'package:payu_payment/payu_payment.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PayUWebView extends StatefulWidget {
-  final Function(WebViewController? controller, Widget child) builder;
-  final PayUOrderResponse orderResponse;
-  final Widget? customLoadingWidget;
-  final String redirectUrl;
   const PayUWebView({
     Key? key,
     required this.builder,
     required this.redirectUrl,
+    this.onPaymentEnd,
     required this.orderResponse,
     this.customLoadingWidget,
   }) : super(key: key);
-
+  final Function(WebViewController? controller, Widget child) builder;
+  final PayUOrderResponse orderResponse;
+  final Widget? customLoadingWidget;
+  final String redirectUrl;
+  final Function(bool paymentSuccessful)? onPaymentEnd;
   @override
   _PayUWebViewState createState() => _PayUWebViewState();
 }
@@ -24,6 +25,14 @@ class PayUWebView extends StatefulWidget {
 class _PayUWebViewState extends State<PayUWebView> {
   WebViewController? controller;
   double opacity = 0;
+
+  callback(bool result) {
+    if (widget.onPaymentEnd != null) {
+      widget.onPaymentEnd!(result);
+    } else {
+      Navigator.of(context).pop(result);
+    }
+  }
 
   Widget webViewBody() {
     return Stack(
@@ -48,10 +57,11 @@ class _PayUWebViewState extends State<PayUWebView> {
                 // TO remmove this strange button overlay BUG in webView or PayU
                 controller?.scrollBy(0, 1);
                 if (request.url.contains('error')) {
-                  Navigator.of(context).pop(false);
+                  callback(false);
+
                   return NavigationDecision.prevent;
                 } else if (request.url.contains(widget.redirectUrl)) {
-                  Navigator.of(context).pop(true);
+                  callback(true);
                   return NavigationDecision.prevent;
                 }
                 return NavigationDecision.navigate;

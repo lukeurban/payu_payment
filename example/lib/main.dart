@@ -11,8 +11,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  //Make sure that this is the shop url set in PayU
-  String redirectUrl = 'https://xyz.com';
+  //Make sure that this is the shop "Website address" set in PayU
+  String redirectUrl = 'https://lukeurban.tech';
   PayUOrder order = PayUOrder(
       posId: 398870,
       description: 'ZAKUPY',
@@ -110,6 +110,10 @@ class _MyAppState extends State<MyApp> {
                                   },
                                   orderResponse: payUOrderResponse,
                                   redirectUrl: redirectUrl,
+                                  onPaymentEnd: (bool paymentSuccessful) {
+                                    print('My super custom payment callback');
+                                    Navigator.of(context).pop(paymentSuccessful);
+                                  },
                                 ),
                               )),
                     ).then((value) {

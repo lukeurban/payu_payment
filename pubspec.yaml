@@ -1,6 +1,6 @@
 name: payu_payment
 description: Simple PayU integration using WebView
-version: 0.0.2
+version: 0.0.3
 repository: https://github.com/lukeurban/payu_payment
 
 environment:
