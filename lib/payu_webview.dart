@@ -13,10 +13,21 @@ class PayUWebView extends StatefulWidget {
     required this.orderResponse,
     this.customLoadingWidget,
   }) : super(key: key);
+
+  ///` builder`- required - builder is public in order to access `WebViewController`. This allows devs to wrap `child` with some widgets that provide features like reload, refresh go back etc. See [WebViewController documentation](https://pub.dev/documentation/webview_flutter/latest/webview_flutter/WebViewController-class.html)
   final Function(WebViewController? controller, Widget child) builder;
+
+  /// required - **PayUOrderResponse** - response object from **payuFlutter.prepareOrder(order);**
   final PayUOrderResponse orderResponse;
+
+  /// `customLoadingWidget` - optional - **Widget** - Shows when webView is loading. By default it's `CircularProgressIndicator`
   final Widget? customLoadingWidget;
+
+  ///required - **String** - Redirect url is a crucial part of `payu_payment` is setting. It needs to be the same url as in PayU shop `Website address *:`(shown on screenshot). That URL is where the PayU flow ends in the WebView. The plugin uses that to detect when user payment was successful.
+  /// !['payU screen](https://i.imgur.com/ORRIkO4.png)
   final String redirectUrl;
+
+  /// optional - **Function(bool)** - by default it does **Navigator.of(context).pop();** but you can override this behavior
   final Function(bool paymentSuccessful)? onPaymentEnd;
   @override
   _PayUWebViewState createState() => _PayUWebViewState();

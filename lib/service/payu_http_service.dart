@@ -13,16 +13,20 @@ class PayUHttpService {
     this.isProduction = false,
   });
 
-  Future<PayUAuthResponse> authorize(int? clientId, String? clientSecret) async {
-    String data = 'grant_type=client_credentials&client_id=$clientId&client_secret=$clientSecret';
-    http.Response res =
-        await http.post(Uri.parse('$baseUrl/pl/standard/user/oauth/authorize?$data'));
-    if (res.statusCode != 200) throw Exception('http.post error: statusCode= ${res.statusCode}');
+  Future<PayUAuthResponse> authorize(
+      int? clientId, String? clientSecret) async {
+    String data =
+        'grant_type=client_credentials&client_id=$clientId&client_secret=$clientSecret';
+    http.Response res = await http
+        .post(Uri.parse('$baseUrl/pl/standard/user/oauth/authorize?$data'));
+    if (res.statusCode != 200)
+      throw Exception('http.post error: statusCode= ${res.statusCode}');
     Map<String, dynamic> json = jsonDecode(res.body);
     return PayUAuthResponse.fromJson(json);
   }
 
-  Future<PayUOrderResponse> order(PayUOrderRequest orderRequest, PayUAuthResponse auth) async {
+  Future<PayUOrderResponse> order(
+      PayUOrderRequest orderRequest, PayUAuthResponse auth) async {
     Map<String, String> headers = {
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.authorizationHeader: 'Bearer ${auth.accessToken}',
@@ -40,6 +44,8 @@ class PayUHttpService {
   }
 
   String get baseUrl {
-    return isProduction ? 'https://secure.payu.com' : 'https://secure.snd.payu.com';
+    return isProduction
+        ? 'https://secure.payu.com'
+        : 'https://secure.snd.payu.com';
   }
 }

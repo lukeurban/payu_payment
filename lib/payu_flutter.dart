@@ -1,11 +1,9 @@
-
 import 'dart:async';
 
 import 'package:flutter/services.dart';
 
 class PayuFlutter {
-  static const MethodChannel _channel =
-      const MethodChannel('payu_flutter');
+  static const MethodChannel _channel = const MethodChannel('payu_flutter');
 
   static Future<String> get platformVersion async {
     final String version = await _channel.invokeMethod('getPlatformVersion');

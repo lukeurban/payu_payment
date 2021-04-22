@@ -26,8 +26,10 @@ class PayUFlutter {
     );
   }
 
+  ///  Does authorization and placing and order. Returns **PayUOrderResponse** which contains URL used by WebView
   Future<PayUOrderResponse> prepareOrder(PayUOrder order) async {
-    PayUAuthResponse authResponse = await _payUHttpService.authorize(clientId, clientSecret);
+    PayUAuthResponse authResponse =
+        await _payUHttpService.authorize(clientId, clientSecret);
     return _payUHttpService.order(
         PayUOrderRequest(
           customerIp: '127.0.0.1',

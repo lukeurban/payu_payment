@@ -67,6 +67,7 @@ For now, you can use `PayUWebView` widget to build your PayU WebView. First you 
 - `orderResponse` - required - **PayUOrderResponse** - response object from **payuFlutter.prepareOrder(order);**
 - `onPaymentEnd` - optional - **Function(bool)** - by default it does **Navigator.of(context).pop();** but you can override this behavior
 
+- `customLoadingWidget` - optional - **Widget** - Shows when webView is loading. By default it's `CircularProgressIndicator`
 - `redirectUrl` - required - **String** - Redirect url is a crucial part of `payu_payment` is setting. It needs to be the same url as in PayU shop `Website address *:`(shown on screenshot). That URL is where the PayU flow ends in the WebView. The plugin uses that to detect when user payment was successful.
 
 !['payU screen](https://i.imgur.com/ORRIkO4.png)
